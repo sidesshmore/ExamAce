@@ -39,13 +39,13 @@ class _MainscreenState extends State<Mainscreen> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.history,
-              size: height * 0.05,
+              size: height * 0.046,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              CupertinoIcons.home,
+              CupertinoIcons.chat_bubble_text,
               size: height * 0.040,
             ),
             label: '',
