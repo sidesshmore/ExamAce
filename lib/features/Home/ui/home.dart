@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   ChatUser sidessh = ChatUser(id: '1', firstName: 'Sidessh');
-  ChatUser aquaBot =
+  ChatUser examAce =
       ChatUser(id: '2', firstName: 'ExamAce', profileImage: 'assets/icon.png');
 
   List<ChatMessage> messageList = [];
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
   final header = {'Content-Type': 'application/json'};
 
   getData(ChatMessage m) async {
-    typingAnimation.add(aquaBot);
+    typingAnimation.add(examAce);
     messageList.insert(0, m);
     setState(() {});
 
@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
         ChatMessage responseMessage = ChatMessage(
             text: resultResponse['candidates'][0]['content']['parts'][0]
                 ['text'],
-            user: aquaBot,
+            user: examAce,
             createdAt: DateTime.now());
 
         messageList.insert(0, responseMessage);
@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
       }
     }).catchError((e) {});
 
-    typingAnimation.remove(aquaBot);
+    typingAnimation.remove(examAce);
     setState(() {});
   }
 

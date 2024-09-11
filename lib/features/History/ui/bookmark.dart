@@ -1,14 +1,14 @@
 import 'package:examace/features/MainScreen/ui/mainScreen.dart';
 import 'package:flutter/material.dart';
 
-class History extends StatefulWidget {
-  const History({super.key});
+class Bookmark extends StatefulWidget {
+  const Bookmark({super.key});
 
   @override
-  State<History> createState() => _HistoryState();
+  State<Bookmark> createState() => _BookmarkState();
 }
 
-class _HistoryState extends State<History> {
+class _BookmarkState extends State<Bookmark> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -25,7 +25,7 @@ class _HistoryState extends State<History> {
               );
             },
           ),
-          title: Text('History',
+          title: Text('Bookmarks',
               style: TextStyle(
                   fontSize: screenWidth * 36 / 432,
                   fontWeight: FontWeight.w400)),

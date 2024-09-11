@@ -1,4 +1,4 @@
-import 'package:examace/features/History/ui/history.dart';
+import 'package:examace/features/History/ui/bookmark.dart';
 import 'package:examace/features/Home/ui/home.dart';
 import 'package:examace/features/Settings/ui/settings.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +14,7 @@ class Mainscreen extends StatefulWidget {
 class _MainscreenState extends State<Mainscreen> {
   int _selectedIndex = 1;
   final List<Widget> _widgetOptions = [
-    const History(),
+    const Bookmark(),
     const Home(),
     const Settings(),
   ];
@@ -38,8 +38,8 @@ class _MainscreenState extends State<Mainscreen> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.history,
-              size: height * 0.046,
+              Icons.bookmark_border,
+              size: height * 0.042,
             ),
             label: '',
           ),
