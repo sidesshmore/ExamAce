@@ -192,7 +192,7 @@ class _SettingsState extends State<Settings> {
                         padding: EdgeInsets.only(left: 8.0),
                         child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.bug_report_outlined,
                             ),
                             SizedBox(
