@@ -27,6 +27,13 @@ class _HomeState extends State<Home> {
   final header = {'Content-Type': 'application/json'};
 
   getData(ChatMessage m) async {
+    // Append 'in detail' to the message text
+    m = ChatMessage(
+      text: '${m.text} Explain in detail',
+      user: m.user,
+      createdAt: m.createdAt,
+    );
+
     typingAnimation.add(examAce);
     messageList.insert(0, m);
     setState(() {});
