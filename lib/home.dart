@@ -11,9 +11,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
-        child: Text('Sidessh'),
+        child: Text('Sidessh',
+            style: TextStyle(
+                fontSize: screenWidth * 0.13, fontWeight: FontWeight.w600)),
       ),
     );
   }
