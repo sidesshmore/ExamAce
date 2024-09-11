@@ -103,7 +103,7 @@ class _SettingsState extends State<Settings> {
                 ),
                 SemDropDown(),
                 SizedBox(
-                  height: screenHeight * 0.02,
+                  height: screenHeight * 0.03,
                 ),
                 BugReport(),
               ],
