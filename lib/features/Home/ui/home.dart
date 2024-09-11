@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
@@ -44,11 +45,13 @@ class _HomeState extends State<Home> {
     await http
         .post(Uri.parse(myURL), headers: header, body: jsonEncode(textData))
         .then((value) {
+          print(value.body);
       if (value.statusCode == 200) {
         var resultResponse = jsonDecode(value.body);
         print(resultResponse['candidates'][0]['content']['parts'][0]['text']);
 
         ChatMessage responseMessage = ChatMessage(
+          
             text: resultResponse['candidates'][0]['content']['parts'][0]
                 ['text'],
             user: aquaBot,
@@ -96,11 +99,28 @@ class _HomeState extends State<Home> {
                     padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom),
                     child: DashChat(
+                      messageOptions: MessageOptions(currentUserContainerColor: Color(0xffFABC3F),currentUserTextColor: Colors.black,
+                      containerColor: Color(0xFF262626),
+                      textColor: Colors.white,
+                      bottom: (message, previousMessage, nextMessage) =>message.user.id!='1'? 
+                      Row(children: [
+                        IconButton(onPressed: (){
+                          FlutterClipboard.copy(message.text).then(( value ) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Copied!!"))));
+                        }, icon: Icon(Icons.copy)),
+                        IconButton(onPressed: (){}, icon: Icon(Icons.thumb_up_off_alt_sharp)),
+                        IconButton(onPressed: (){}, icon: Icon(Icons.thumb_down_off_alt_sharp))],
+                        )
+                      :Container()),
+                      scrollToBottomOptions: ScrollToBottomOptions(disabled: true),
+                      inputOptions: InputOptions(inputTextStyle: TextStyle(color: Colors.white),
+                      inputDecoration: InputDecoration(border:OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.yellow)) )),
                         typingUsers: typingAnimation,
                         currentUser: sidessh,
                         onSend: (ChatMessage m) {
                           getData(m);
                         },
+
                         messages: messageList),
                   ),
                 ),
