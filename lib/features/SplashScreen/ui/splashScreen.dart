@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:examace/features/Home/ui/home.dart';
+import 'package:examace/features/MainScreen/ui/mainScreen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -42,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(const Duration(seconds: 2), () {
       _controller.reverse().then((value) {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => Mainscreen()));
       });
     });
   }
