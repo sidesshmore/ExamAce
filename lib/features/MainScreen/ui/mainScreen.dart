@@ -52,8 +52,8 @@ class _MainscreenState extends State<Mainscreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              CupertinoIcons.settings,
-              size: height * 0.040,
+              Icons.person_outline,
+              size: height * 0.046,
             ),
             label: '',
           ),
