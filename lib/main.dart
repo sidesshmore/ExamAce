@@ -1,5 +1,5 @@
-import 'package:examace/home.dart';
-import 'package:examace/splashScreen.dart';
+import 'package:examace/features/Home/ui/home.dart';
+import 'package:examace/features/SplashScreen/ui/splashScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
