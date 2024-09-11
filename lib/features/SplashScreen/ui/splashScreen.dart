@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
       vsync: this,
     );
 
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen>
       CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
 
-    _scaleAnimation = Tween<double>(begin: 0.9, end: 1).animate(
+    _scaleAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
@@ -39,9 +39,11 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Home()));
+    Timer(const Duration(seconds: 2), () {
+      _controller.reverse().then((value) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Home()));
+      });
     });
   }
 
@@ -68,53 +70,54 @@ class _SplashScreenState extends State<SplashScreen>
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Column(
-          children: [
-            SizedBox(
-              height: screenHeight * 0.1,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AnimatedBuilder(
-                  animation: _controller,
-                  builder: (context, child) {
-                    return Opacity(
-                      opacity: _fadeAnimation.value,
-                      child: Transform.scale(
+        body: FadeTransition(
+          opacity: _fadeAnimation,
+          child: Column(
+            children: [
+              SizedBox(
+                height: screenHeight * 0.1,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return Transform.scale(
                         scale: _scaleAnimation.value,
                         child: Transform.rotate(
                           angle: _rotationAnimation.value * 6.28319,
                           child: child,
                         ),
-                      ),
-                    );
-                  },
-                  child: Image.asset(
-                    'assets/sparkle.png',
-                    height: screenHeight * 0.45,
+                      );
+                    },
+                    child: Image.asset(
+                      'assets/sparkle.png',
+                      height: screenHeight * 0.45,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: screenHeight * 0.02,
-            ),
-            Text(
-              'ExamAce',
-              style: TextStyle(
-                  fontSize: screenWidth * 0.13, fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              width: screenWidth * (351 / 432),
-              child: Text(
-                textAlign: TextAlign.center,
-                'Your Shortcut to Top-Quality Exam Answers',
-                style: TextStyle(
-                    fontSize: screenWidth * 0.055, fontWeight: FontWeight.w500),
+                ],
               ),
-            ),
-          ],
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
+              Text(
+                'ExamAce',
+                style: TextStyle(
+                    fontSize: screenWidth * 0.13, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                width: screenWidth * (351 / 432),
+                child: Text(
+                  textAlign: TextAlign.center,
+                  'Your Shortcut to Top-Quality Exam Answers',
+                  style: TextStyle(
+                      fontSize: screenWidth * 0.055,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
