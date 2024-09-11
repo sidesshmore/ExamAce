@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:examace/features/Home/ui/home.dart';
 import 'package:flutter/material.dart';
 
@@ -10,14 +9,46 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+  late Animation<double> _scaleAnimation;
+  late Animation<double> _rotationAnimation;
+
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 2), () {
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
+
+    _scaleAnimation = Tween<double>(begin: 0.9, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+
+    _rotationAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+
+    _controller.forward();
+
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Home()));
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -45,9 +76,24 @@ class _SplashScreenState extends State<SplashScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/sparkle.png',
-                  height: screenHeight * 0.45,
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return Opacity(
+                      opacity: _fadeAnimation.value,
+                      child: Transform.scale(
+                        scale: _scaleAnimation.value,
+                        child: Transform.rotate(
+                          angle: _rotationAnimation.value * 6.28319,
+                          child: child,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Image.asset(
+                    'assets/sparkle.png',
+                    height: screenHeight * 0.45,
+                  ),
                 ),
               ],
             ),
