@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:clipboard/clipboard.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -99,7 +98,7 @@ class _HomeState extends State<Home> {
                         bottom: MediaQuery.of(context).viewInsets.bottom),
                     child: DashChat(
                         messageOptions: MessageOptions(
-                            currentUserContainerColor: const Color(0xffFABC3F),
+                            currentUserContainerColor: const Color(0xffFEBA04),
                             currentUserTextColor: Colors.black,
                             containerColor: const Color(0xFF262626),
                             textColor: Colors.white,
@@ -141,14 +140,27 @@ class _HomeState extends State<Home> {
                         scrollToBottomOptions:
                             const ScrollToBottomOptions(disabled: true),
                         inputOptions: InputOptions(
-                            inputTextStyle:
-                                const TextStyle(color: Colors.white),
-                            inputDecoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.yellow)))),
+                          inputTextStyle: const TextStyle(color: Colors.white),
+                          inputDecoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Color(0xffFEBA04)))),
+                          sendButtonBuilder: (onSend) {
+                            return IconButton(
+                              icon: const Icon(
+                                Icons.send,
+                                color: Colors.yellow,
+                              ),
+                              onPressed: () {
+                                if (onSend != null) {
+                                  onSend();
+                                }
+                              },
+                            );
+                          },
+                        ),
                         typingUsers: typingAnimation,
                         currentUser: sidessh,
                         onSend: (ChatMessage m) {
