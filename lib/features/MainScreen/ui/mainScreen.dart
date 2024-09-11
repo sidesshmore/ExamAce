@@ -27,7 +27,7 @@ class _MainscreenState extends State<Mainscreen> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.sizeOf(context).height;
+    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Center(
