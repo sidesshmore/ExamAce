@@ -1,4 +1,6 @@
+import 'package:examace/features/History/ui/history.dart';
 import 'package:examace/features/Home/ui/home.dart';
+import 'package:examace/features/Settings/ui/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +14,9 @@ class Mainscreen extends StatefulWidget {
 class _MainscreenState extends State<Mainscreen> {
   int _selectedIndex = 1;
   final List<Widget> _widgetOptions = [
+    const History(),
     const Home(),
-    const Home(),
-    const Home(),
+    const Settings(),
   ];
 
   void _onItemTapped(int index) {
@@ -37,13 +39,13 @@ class _MainscreenState extends State<Mainscreen> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.history,
-              size: height * 0.040,
+              size: height * 0.05,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              CupertinoIcons.chat_bubble_text,
+              CupertinoIcons.home,
               size: height * 0.040,
             ),
             label: '',

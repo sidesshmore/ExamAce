@@ -105,7 +105,9 @@ class _SplashScreenState extends State<SplashScreen>
               Text(
                 'ExamAce',
                 style: TextStyle(
-                    fontSize: screenWidth * 0.13, fontWeight: FontWeight.w600),
+                    fontSize: screenWidth * 0.13,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
               ),
               SizedBox(
                 width: screenWidth * (351 / 432),
@@ -113,8 +115,9 @@ class _SplashScreenState extends State<SplashScreen>
                   textAlign: TextAlign.center,
                   'Your Shortcut to Top-Quality Exam Answers',
                   style: TextStyle(
+                      color: Colors.grey[850],
                       fontSize: screenWidth * 0.055,
-                      fontWeight: FontWeight.w500),
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ],
