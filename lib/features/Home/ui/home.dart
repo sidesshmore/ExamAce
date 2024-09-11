@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
@@ -17,6 +18,9 @@ class _HomeState extends State<Home> {
 
   List<ChatMessage> messageList = [];
   List<ChatUser> typingAnimation = [];
+
+  final myURL =
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${dotenv.env["GEMINI_API"]}';
 
   final header = {'Content-Type': 'application/json'};
 
