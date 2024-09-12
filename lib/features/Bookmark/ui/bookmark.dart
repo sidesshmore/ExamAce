@@ -25,9 +25,9 @@ class _BookmarkState extends State<Bookmark> {
               );
             },
           ),
-          title: Text('Bookmarks',
+          title: Text('Saved',
               style: TextStyle(
-                  fontSize: screenWidth * 36 / 432,
+                  fontSize: screenWidth * 27 / 432,
                   fontWeight: FontWeight.w400)),
         ),
       ),

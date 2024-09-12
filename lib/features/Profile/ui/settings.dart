@@ -1,8 +1,8 @@
 import 'package:examace/features/Home/ui/home.dart';
 import 'package:examace/features/MainScreen/ui/mainScreen.dart';
-import 'package:examace/features/Settings/widgets/branchDropDown.dart';
-import 'package:examace/features/Settings/widgets/bugReport.dart';
-import 'package:examace/features/Settings/widgets/semDropDown.dart';
+import 'package:examace/features/Profile/widgets/branchDropDown.dart';
+import 'package:examace/features/Profile/widgets/bugReport.dart';
+import 'package:examace/features/Profile/widgets/semDropDown.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatefulWidget {
@@ -31,7 +31,7 @@ class _SettingsState extends State<Settings> {
             ),
             title: Text('Profile',
                 style: TextStyle(
-                    fontSize: screenWidth * 36 / 432,
+                    fontSize: screenWidth * 27 / 432,
                     fontWeight: FontWeight.w400)),
           ),
           body: Padding(

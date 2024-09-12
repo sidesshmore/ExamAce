@@ -1,6 +1,6 @@
-import 'package:examace/features/History/ui/bookmark.dart';
+import 'package:examace/features/Bookmark/ui/bookmark.dart';
 import 'package:examace/features/Home/ui/home.dart';
-import 'package:examace/features/Settings/ui/settings.dart';
+import 'package:examace/features/Profile/ui/settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,30 +37,39 @@ class _MainscreenState extends State<Mainscreen> {
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.bookmark_border,
-              size: height * 0.042,
-            ),
+            icon: _buildIcon(Icons.bookmark_border, 0, height * 0.04),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              CupertinoIcons.chat_bubble_text,
-              size: height * 0.040,
-            ),
+            icon: _buildIcon(CupertinoIcons.chat_bubble_text, 1, height * 0.04),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outline,
-              size: height * 0.046,
-            ),
+            icon: _buildIcon(Icons.person_outline, 2, height * 0.04),
             label: '',
           ),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        selectedItemColor: Color(0xffFEBA04),
+        selectedItemColor: const Color(0xffFEBA04),
+      ),
+    );
+  }
+
+  Widget _buildIcon(IconData icon, int index, double size) {
+    double selectedSize = size * (_selectedIndex == index ? 1.1 : 1);
+    double translateY = _selectedIndex == index ? -2.0 : 0.0;
+
+    return Transform.translate(
+      offset: Offset(0, translateY),
+      child: Transform.scale(
+        scale: _selectedIndex == index
+            ? 1
+            : 0.9, // Increase size for selected item
+        child: Icon(
+          icon,
+          size: selectedSize,
+        ),
       ),
     );
   }
