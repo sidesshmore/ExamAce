@@ -32,7 +32,7 @@ class _SettingsState extends State<Settings> {
             title: Text('Profile',
                 style: TextStyle(
                     fontSize: screenWidth * 27 / 432,
-                    fontWeight: FontWeight.w400)),
+                    fontWeight: FontWeight.w600)),
           ),
           body: Padding(
             padding: const EdgeInsets.all(10.0),

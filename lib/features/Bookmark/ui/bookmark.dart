@@ -28,7 +28,7 @@ class _BookmarkState extends State<Bookmark> {
           title: Text('Saved',
               style: TextStyle(
                   fontSize: screenWidth * 27 / 432,
-                  fontWeight: FontWeight.w400)),
+                  fontWeight: FontWeight.w600)),
         ),
       ),
     );
