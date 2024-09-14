@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
@@ -23,54 +24,88 @@ class _HomeState extends State<Home> {
   List<ChatUser> typingAnimation = [];
 
   final myURL =
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${dotenv.env["GEMINI_API"]}';
+      'http://127.0.0.1:5000';
 
   final header = {'Content-Type': 'application/json'};
 
-  getData(ChatMessage m) async {
+
+  void hitApi(ChatMessage m)async{
     m = ChatMessage(
-      text: '${m.text} Explain in detail',
+      text: '${m.text}',
       user: m.user,
       createdAt: m.createdAt,
     );
-
     typingAnimation.add(examAce);
     messageList.insert(0, m);
-    setState(() {});
-
-    var textData = {
-      "contents": [
-        {
-          "parts": [
-            {"text": m.text}
-          ]
-        }
-      ]
-    };
-
-    await http
-        .post(Uri.parse(myURL), headers: header, body: jsonEncode(textData))
-        .then((value) {
-      print(value.body);
-      if (value.statusCode == 200) {
-        var resultResponse = jsonDecode(value.body);
-        print(resultResponse['candidates'][0]['content']['parts'][0]['text']);
-
-        ChatMessage responseMessage = ChatMessage(
-            text: resultResponse['candidates'][0]['content']['parts'][0]
-                ['text'],
+        setState(() {});
+    var client = http.Client();
+    final headers = {'Content-Type': 'application/json'};
+    Map<String, dynamic> body = {'question':'${m.text}. Explain in detail'};
+    String jsonBody = json.encode(body);
+    try {
+      var response = await client.post(Uri.parse('http://127.0.0.1:5000'),
+          headers: headers, body: jsonBody);
+      var decodeResponse = jsonDecode(response.body);
+      if(response.statusCode==200){
+      ChatMessage responseMessage = ChatMessage(
+            text: decodeResponse['answer'],
             user: examAce,
             createdAt: DateTime.now());
-
-        messageList.insert(0, responseMessage);
-      } else {
-        print('Error');
+      messageList.insert(0, responseMessage);
+      }else{
+        ChatMessage responseMessage = ChatMessage(
+            text: 'Unable to generate the answer.Please try again later',
+            user: examAce,
+            createdAt: DateTime.now());
+      messageList.insert(0, responseMessage);
       }
-    }).catchError((e) {});
-
+    } catch (e) {
+      ChatMessage responseMessage = ChatMessage(
+            text: 'Server is busy.Please try again later',
+            user: examAce,
+            createdAt: DateTime.now());
+      messageList.insert(0, responseMessage);
+    }
     typingAnimation.remove(examAce);
     setState(() {});
   }
+
+  // getData(ChatMessage m) async {
+  //   m = ChatMessage(
+  //     text: '${m.text} Explain in detail',
+  //     user: m.user,
+  //     createdAt: m.createdAt,
+  //   );
+
+  //   typingAnimation.add(examAce);
+  //   messageList.insert(0, m);
+  //   setState(() {});
+
+  // Map<String, dynamic> body = {'question':m.text};
+
+  //   await http
+  //       .post(Uri.parse(myURL), headers: header, body: json.encode(body))
+  //       .then((value) {
+  //     print(value.body);
+  //     if (value.statusCode == 200) {
+  //       var resultResponse = jsonDecode(value.body);
+  //       print(resultResponse);
+
+  //       ChatMessage responseMessage = ChatMessage(
+  //           text: resultResponse['candidates'][0]['content']['parts'][0]
+  //               ['text'],
+  //           user: examAce,
+  //           createdAt: DateTime.now());
+
+  //       messageList.insert(0, responseMessage);
+  //     } else {
+  //       print('Error');
+  //     }
+  //   }).catchError((e) {});
+
+  //   typingAnimation.remove(examAce);
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -219,7 +254,7 @@ class _HomeState extends State<Home> {
                       typingUsers: typingAnimation,
                       currentUser: sidessh,
                       onSend: (ChatMessage m) {
-                        getData(m);
+                        hitApi(m);
                       },
                       messages: messageList,
                     ),
