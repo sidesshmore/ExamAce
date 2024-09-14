@@ -1,11 +1,11 @@
 import 'dart:convert';
-
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:examace/features/Bookmark/ui/bookmark.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -105,7 +105,6 @@ class _HomeState extends State<Home> {
                         bottom: MediaQuery.of(context).viewInsets.bottom),
                     child: DashChat(
                       messageOptions: MessageOptions(
-                        // Corrected messageTextBuilder signature
                         messageTextBuilder: (
                           ChatMessage message,
                           ChatMessage? previousMessage,
@@ -168,9 +167,21 @@ class _HomeState extends State<Home> {
                                             size: screenWidth * (20 / 432),
                                           )),
                                       IconButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                              // Add the message to the global list
+                                              if (!bookmarkedMessages
+                                                  .contains(message)) {
+                                                bookmarkedMessages.add(message);
+                                              }
+                                            });
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(const SnackBar(
+                                                    content:
+                                                        Text("Bookmarked!")));
+                                          },
                                           icon: Icon(
-                                            Icons.thumb_up_off_alt_sharp,
+                                            Icons.bookmark_add_outlined,
                                             size: screenWidth * (20 / 432),
                                           )),
                                       IconButton(
@@ -183,8 +194,6 @@ class _HomeState extends State<Home> {
                                   )
                                 : Container(),
                       ),
-                      scrollToBottomOptions:
-                          const ScrollToBottomOptions(disabled: false),
                       inputOptions: InputOptions(
                         inputTextStyle: const TextStyle(color: Colors.white),
                         inputDecoration: InputDecoration(
@@ -224,3 +233,5 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+List<ChatMessage> bookmarkedMessages = [];
