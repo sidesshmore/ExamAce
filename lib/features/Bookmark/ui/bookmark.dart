@@ -11,7 +11,6 @@ class Bookmark extends StatefulWidget {
 }
 
 class _BookmarkState extends State<Bookmark> {
-  // Track the index of the expanded tile
   int _expandedIndex = -1;
 
   void _removeBookmark(int index) {
@@ -86,8 +85,7 @@ class _BookmarkState extends State<Bookmark> {
                           ),
                     onTap: () {
                       setState(() {
-                        _expandedIndex =
-                            isExpanded ? -1 : index; // Toggle expansion
+                        _expandedIndex = isExpanded ? -1 : index;
                       });
                     },
                     contentPadding:
@@ -111,13 +109,13 @@ class _BookmarkState extends State<Bookmark> {
                                 icon: Icon(Icons.close, color: Colors.red),
                                 onPressed: () {
                                   setState(() {
-                                    _expandedIndex = -1; // Collapse the tile
+                                    _expandedIndex = -1;
                                   });
                                 },
                               ),
                             ),
                             MarkdownBody(
-                              data: message.text, // Full content with Markdown
+                              data: message.text,
                               styleSheet: MarkdownStyleSheet(
                                 p: TextStyle(fontSize: 16, color: Colors.white),
                                 strong: TextStyle(
