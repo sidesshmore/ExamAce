@@ -26,9 +26,6 @@ class _SignupState extends State<Signup> {
     final email = TextEditingController();
     final password = TextEditingController();
 
-    final country = TextEditingController();
-    final state = TextEditingController();
-    final city = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
