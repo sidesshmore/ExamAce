@@ -1,4 +1,5 @@
 import 'package:examace/features/Bookmark/ui/bookmark.dart';
+import 'package:examace/features/Chapters/ui/chapters.dart';
 import 'package:examace/features/Home/ui/home.dart';
 import 'package:examace/features/Profile/ui/settings.dart';
 import 'package:examace/features/Subjects/ui/subjects.dart';
@@ -16,7 +17,7 @@ class _MainscreenState extends State<Mainscreen> {
   int _selectedIndex = 1;
   final List<Widget> _widgetOptions = [
     const Bookmark(),
-    const Subjects(),
+    const Chapters(),
     const Settings(),
   ];
 
