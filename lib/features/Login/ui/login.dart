@@ -1,4 +1,5 @@
 import 'package:examace/features/Home/ui/home.dart';
+import 'package:examace/features/MainScreen/ui/mainScreen.dart';
 import 'package:examace/features/Signup/ui/signUp.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -92,7 +93,7 @@ class _LoginState extends State<Login> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) {
-                            return Home();
+                            return Mainscreen();
                           }),
                         );
                       },
