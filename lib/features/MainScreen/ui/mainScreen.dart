@@ -17,7 +17,7 @@ class _MainscreenState extends State<Mainscreen> {
   int _selectedIndex = 1;
   final List<Widget> _widgetOptions = [
     const Bookmark(),
-    const Chapters(),
+    const Home(),
     const Settings(),
   ];
 
