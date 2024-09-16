@@ -23,13 +23,11 @@ class _HomeState extends State<Home> {
   List<ChatMessage> messageList = [];
   List<ChatUser> typingAnimation = [];
 
-  final myURL =
-      'http://127.0.0.1:5000';
+  final myURL = 'http://127.0.0.1:5000';
 
   final header = {'Content-Type': 'application/json'};
 
-
-  void hitApi(ChatMessage m)async{
+  void hitApi(ChatMessage m) async {
     m = ChatMessage(
       text: '${m.text}',
       user: m.user,
@@ -37,33 +35,33 @@ class _HomeState extends State<Home> {
     );
     typingAnimation.add(examAce);
     messageList.insert(0, m);
-        setState(() {});
+    setState(() {});
     var client = http.Client();
     final headers = {'Content-Type': 'application/json'};
-    Map<String, dynamic> body = {'question':'${m.text}. Explain in detail'};
+    Map<String, dynamic> body = {'question': '${m.text}. Explain in detail'};
     String jsonBody = json.encode(body);
     try {
       var response = await client.post(Uri.parse('http://127.0.0.1:5000'),
           headers: headers, body: jsonBody);
       var decodeResponse = jsonDecode(response.body);
-      if(response.statusCode==200){
-      ChatMessage responseMessage = ChatMessage(
+      if (response.statusCode == 200) {
+        ChatMessage responseMessage = ChatMessage(
             text: decodeResponse['answer'],
             user: examAce,
             createdAt: DateTime.now());
-      messageList.insert(0, responseMessage);
-      }else{
+        messageList.insert(0, responseMessage);
+      } else {
         ChatMessage responseMessage = ChatMessage(
             text: 'Unable to generate the answer.Please try again later',
             user: examAce,
             createdAt: DateTime.now());
-      messageList.insert(0, responseMessage);
+        messageList.insert(0, responseMessage);
       }
     } catch (e) {
       ChatMessage responseMessage = ChatMessage(
-            text: 'Server is busy.Please try again later',
-            user: examAce,
-            createdAt: DateTime.now());
+          text: 'Server is busy.Please try again later',
+          user: examAce,
+          createdAt: DateTime.now());
       messageList.insert(0, responseMessage);
     }
     typingAnimation.remove(examAce);
@@ -127,7 +125,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Text(
-                    'Subject Name',
+                    'Computer Network',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
                   ),
                   SizedBox(),

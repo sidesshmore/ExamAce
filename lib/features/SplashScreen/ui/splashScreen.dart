@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:examace/features/Home/ui/home.dart';
+import 'package:examace/features/Login/ui/login.dart';
 import 'package:examace/features/MainScreen/ui/mainScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -44,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen>
       _controller.reverse().then((value) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Mainscreen()),
+          MaterialPageRoute(builder: (context) => Login()),
         );
       });
     });

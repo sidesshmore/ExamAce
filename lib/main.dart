@@ -1,4 +1,6 @@
 import 'package:examace/features/Home/ui/home.dart';
+import 'package:examace/features/Login/ui/login.dart';
+import 'package:examace/features/Signup/ui/signUp.dart';
 import 'package:examace/features/SplashScreen/ui/splashScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,8 @@ void main() async {
       // initialRoute: 'home',
       routes: {
         'home': (context) => Home(),
+        'login': (context) => Login(),
+        'signup': (context) => Signup(),
       },
       home: SplashScreen(),
     ),
