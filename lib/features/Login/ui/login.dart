@@ -14,7 +14,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController();
+    TextEditingController password = TextEditingController();
     TextEditingController email = TextEditingController();
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
@@ -67,7 +67,7 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     width: 350,
                     child: TextField(
-                      controller: email,
+                      controller: password,
                       decoration: InputDecoration(
                         label: Text('Password'),
                         border: OutlineInputBorder(
