@@ -112,10 +112,10 @@ class _OnboardingState extends State<Onboarding> {
       case 0: // First Year
         semesterNames = ["Sem I", "Sem II"];
         break;
-      case 1: // Second Year
+      case 1:
         semesterNames = ["Sem III", "Sem IV"];
         break;
-      case 2: // Third Year
+      case 2:
         semesterNames = ["Sem V", "Sem VI"];
         break;
       case 3: // Final Year
@@ -127,7 +127,9 @@ class _OnboardingState extends State<Onboarding> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Academic Details'),
+        title: Text('Academic Details',
+            style: TextStyle(
+                fontSize: screenWidth * 27 / 432, fontWeight: FontWeight.w600)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
