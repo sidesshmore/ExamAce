@@ -1,5 +1,6 @@
 // import 'package:country_state_city_pro/country_state_city_pro.dart';
 import 'package:examace/features/Login/ui/login.dart';
+import 'package:examace/features/Onboarding/ui/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -119,7 +120,14 @@ class _SignupState extends State<Signup> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xffFEBA04),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return Onboarding();
+                        }),
+                      );
+                    },
                     child: Text(
                       'Sign up',
                       style: GoogleFonts.poppins(
