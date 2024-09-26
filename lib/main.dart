@@ -21,7 +21,7 @@ void main() async {
     MaterialApp(
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      initialRoute: 'signup',
+      initialRoute: 'login',
       routes: {
         'home': (context) => Home(),
         'login': (context) => Login(),
