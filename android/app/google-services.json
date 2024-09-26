@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "31873733581",
+    "project_id": "examace-4c703",
+    "storage_bucket": "examace-4c703.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31873733581:android:5213be45fe3261186faa84",
+        "android_client_info": {
+          "package_name": "com.example.examace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31873733581-g47g7p2u4mplhth13nukt21ld0erdtq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAExnY3bz8yM4od4cWYMXv9vHY3rq_YKoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31873733581-g47g7p2u4mplhth13nukt21ld0erdtq7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
