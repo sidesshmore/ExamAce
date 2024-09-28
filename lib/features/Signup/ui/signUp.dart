@@ -141,7 +141,7 @@ class _SignupState extends State<Signup> {
                           backgroundColor: const Color(0xffFEBA04),
                         ),
                         onPressed: () {
-                          signupbloc.add(SignupButtonClicked(name: "tester", email: "tester@gmail.com", password: "tester"));
+                          signupbloc.add(SignupButtonClicked(name: name.text, email: email.text, password: password.text));
                         },
                         child: Text(
                           'Sign up',
