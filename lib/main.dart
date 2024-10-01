@@ -1,4 +1,5 @@
 import 'package:examace/features/Chapters/ui/chapters.dart';
+import 'package:examace/features/Error/ui/errorPage.dart';
 import 'package:examace/features/Home/ui/home.dart';
 import 'package:examace/features/Login/ui/login.dart';
 import 'package:examace/features/Onboarding/ui/onboarding.dart';
@@ -29,6 +30,7 @@ void main() async {
         'subjects': (context) => Subjects(),
         'chapters': (context) => Chapters(),
         'onboarding': (context) => Onboarding(),
+        'error': (context) => ErrorPage(),
       },
       home: SplashScreen(),
     ),
